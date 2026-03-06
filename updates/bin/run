@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+# Runs the updates.
+
+poetry run updates 2 > /dev/null
