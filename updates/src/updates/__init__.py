@@ -1,2 +1,1 @@
-def main():
-	print("It works!")
+from updates.cli import main
