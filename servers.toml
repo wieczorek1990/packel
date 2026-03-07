@@ -1,4 +1,4 @@
-[servers]
+[room]
 name = "Common Room"
 
 [servers.imac-2019]
