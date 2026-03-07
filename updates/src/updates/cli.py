@@ -1,9 +1,9 @@
 import sys
 
-from updates.servers import init
+from updates.servers import init, process
 
 
-def main():
+def main() -> None:
     if len(sys.argv) != 2:
         print("Usage:\tservers.py servers.toml")
         sys.exit(1)
@@ -11,6 +11,7 @@ def main():
     print("Starting reading requested...")
 
     filename = sys.argv[1]
-    init(filename)
+    data = init(filename)
+    process(data)
 
     print("Done.")
