@@ -1,0 +1,7 @@
+[servers]
+name = Common Room
+
+[servers.imac-2019]
+os = macOS
+mac = "9e:32:87:d4:c2:d0"
+broadcast = "192.168.8.255"
