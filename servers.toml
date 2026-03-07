@@ -1,7 +1,21 @@
-[room]
-name = "Common Room"
+[rooms.first-workshop]
+name = "Arts Workshop"
+address = "ul. Spichrzowa 7"
 
-[servers.imac-2019]
+[rooms.second-workshop]
+name = "Programming Workshop"
+address = "ul. Spichrzowa 7A"
+
+[rooms.first-workshop.servers.imac-2019]
 os = "macOS"
 mac = "9e:32:87:d4:c2:d0"
 broadcast = "192.168.8.255"
+
+[rooms.second-workshop.servers.macbookpro-2023]
+os = "macOS"
+
+[rooms.second-workshop.servers.thinkpad-t410]
+os = "Fedora"
+
+[rooms.second-workshop.servers.ideapad-y550]
+os = "Fedora"

@@ -1,0 +1,11 @@
+import json
+import sys
+import tomllib
+
+filepath = sys.argv[1]
+with open(filepath, "rb") as f:
+    data = tomllib.load(f)
+
+dump = json.dumps(data, indent=4, sort_keys=True)
+
+print(dump)
