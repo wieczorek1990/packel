@@ -1,16 +1,27 @@
-import os
 import tomllib
 from os import system
+
+from updates import arp
+from updates import up
 
 
 def process(data: dict) -> None:
     print("Processing servers...")
-    for server, information in data["servers"].items():
-        print(f"Processing server: {server}")
-        broadcast = information["broadcast"]
-        system(f"ping -c 1 {broadcast} > /dev/null")
-        output = os.popen("arp -a").read()
+    for workshop, workshop_data in data["rooms"].items():
+        print(f"Processing workshop: {workshop}")
+        for server, server_data in workshop_data["servers"].items():
+            print(f"Processing server: {server}")
 
+            broadcast = server_data["broadcast"]
+            print("Broadcasting: ", broadcast)
+            system(f"ping -c 1 {broadcast} > /dev/null")
+
+            arp_data = arp.get_arp_data()
+            arp_result = arp.process_arp_data(arp_data)
+
+            os = server_data["os"]
+            update_class = up.get_update_for_os(os)
+            update_class(arp_result).proceed()
     print("Finished processing servers...")
 
 

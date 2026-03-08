@@ -1,6 +1,6 @@
 import unittest
 
-from updates.arp import extract_ip_and_mac, process_arp_result
+from updates.arp import extract_ip_and_mac, process_arp_data
 
 SAMPLE_ONE = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]"""
 SAMPLE_FOUR = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]
@@ -23,7 +23,7 @@ class TestArp(unittest.TestCase):
         self.assertIsARPLine(ip, mac)
 
     def test_process_arp_result(self):
-        result = process_arp_result(SAMPLE_FOUR)
+        result = process_arp_data(SAMPLE_FOUR)
 
         self.assertIsNotNone(result)
         self.assertIsInstance(result, dict)
