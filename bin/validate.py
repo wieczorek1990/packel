@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Dumps the TOML servers file as JSON.
 import json
 import sys
 import tomllib

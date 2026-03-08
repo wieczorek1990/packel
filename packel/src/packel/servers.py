@@ -1,8 +1,8 @@
 import tomllib
 from os import system
 
-from updates import arp
-from updates import up
+from packel import arp
+from packel import up
 
 
 def process(data: dict) -> None:

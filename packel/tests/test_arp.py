@@ -1,6 +1,6 @@
 import unittest
 
-from updates.arp import extract_ip_and_mac, process_arp_data
+from packel.arp import extract_ip_and_mac, process_arp_data
 
 SAMPLE_ONE = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]"""
 SAMPLE_FOUR = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]

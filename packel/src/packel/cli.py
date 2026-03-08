@@ -1,6 +1,6 @@
 import sys
 
-from updates.servers import init, process
+from packel.servers import init, process
 
 
 def main() -> None:

@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+# Runs packel.
+
+poetry run packel ../servers.toml
