@@ -13,15 +13,15 @@ broadcast = "192.168.8.255"
 
 [rooms.second-workshop.servers.macbookpro-2023]
 os = "macOS"
-mac = "9e:32:87:d4:c2:d0"
+mac = "c2:f7:27:c8:19:79"
 broadcast = "192.168.0.255"
 
 [rooms.second-workshop.servers.thinkpad-t410]
 os = "Fedora"
-mac = "9e:32:87:d4:c2:d0"
+mac = "b2:b4:cc:8a:fa:b7"
 broadcast = "192.168.0.255"
 
 [rooms.second-workshop.servers.ideapad-y550]
 os = "Fedora"
-mac = "9e:32:87:d4:c2:d0"
+mac = "f2:23:af:8d:15:d5"
 broadcast = "192.168.0.255"
