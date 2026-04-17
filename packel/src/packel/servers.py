@@ -9,7 +9,13 @@ def process(data: dict) -> None:
     print("Processing servers...")
     for workshop, workshop_data in data["rooms"].items():
         print(f"Processing workshop: {workshop}")
-        for server, server_data in workshop_data["servers"].items():
+
+        try:
+            servers = workshop_data["servers"]
+        except KeyError:
+            continue
+
+        for server, server_data in servers.items():
             print(f"Processing server: {server}")
 
             broadcast = server_data["broadcast"]
