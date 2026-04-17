@@ -1,9 +1,9 @@
 [rooms.first-workshop]
-name = "Arts Workshop"
+name = "1-st workshop"
 address = "ul. Spichrzowa 7"
 
 [rooms.second-workshop]
-name = "Programming Workshop"
+name = "2-nd workshop"
 address = "ul. Spichrzowa 7A"
 
 [rooms.first-workshop.servers.imac-2019]
@@ -11,17 +11,17 @@ os = "macOS"
 mac = "9e:32:87:d4:c2:d0"
 broadcast = "192.168.8.255"
 
-[rooms.second-workshop.servers.macbookpro-2023]
+[rooms.first-workshop.servers.macbookpro-2023]
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
-broadcast = "192.168.0.255"
+broadcast = "192.168.8.255"
 
-[rooms.second-workshop.servers.thinkpad-t410]
+[rooms.first-workshop.servers.thinkpad-t410]
 os = "Fedora"
 mac = "b2:b4:cc:8a:fa:b7"
-broadcast = "192.168.0.255"
+broadcast = "192.168.8.255"
 
-[rooms.second-workshop.servers.ideapad-y550]
+[rooms.first-workshop.servers.ideapad-y550]
 os = "Fedora"
 mac = "f2:23:af:8d:15:d5"
-broadcast = "192.168.0.255"
+broadcast = "192.168.8.255"
