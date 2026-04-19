@@ -11,16 +11,20 @@ def process(data: dict) -> None:
         print(f"Processing workshop: {workshop}")
 
         try:
+            broadcast = workshop_data["broadcast"]
+        except KeyError:
+            continue
+
+        print("Broadcasting: ", broadcast)
+        system(f"ping -c 1 {broadcast} > /dev/null")
+
+        try:
             servers = workshop_data["servers"]
         except KeyError:
             continue
 
         for server, server_data in servers.items():
             print(f"Processing server: {server}")
-
-            broadcast = server_data["broadcast"]
-            print("Broadcasting: ", broadcast)
-            system(f"ping -c 1 {broadcast} > /dev/null")
 
             arp_data = arp.get_arp_data()
             arp_result = arp.process_arp_data(arp_data)
