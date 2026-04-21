@@ -1,5 +1,3 @@
-title = "Łukasz Wieczorek's stations"
-
 [rooms.first-workshop]
 name = "1-st workshop"
 address = "ul. Spichrzowa 7"
@@ -11,24 +9,24 @@ address = "ul. Spichrzowa 7A"
 
 [rooms.first-workshop.servers.imac-2019]
 os = "macOS"
-mac = "9e:32:87:d4:c2:d0"
+mac = "c2:f:ed:dc:f9:b"
 takeaway = false
 worth = 8500
 
 [rooms.first-workshop.servers.macbookpro-2023]
 os = "macOS"
-mac = "c2:f7:27:c8:19:79"
+mac = "3e:2a:ed:1:2c:fb"
 takeaway = true
 worth = 12000
 
 [rooms.first-workshop.servers.thinkpad-t410]
 os = "Fedora"
-mac = "b2:b4:cc:8a:fa:b7"
+mac = "36:1:91:ea:6c:b4"
 takeaway = true
 worth = 5000
 
 [rooms.first-workshop.servers.ideapad-y550]
 os = "Fedora"
-mac = "f2:23:af:8d:15:d5"
+mac = false
 takeaway = false
 worth = 3500

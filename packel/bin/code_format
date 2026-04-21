@@ -1,3 +1,5 @@
 #!/usr/bin/env fish
+# Formats code.
 
+isort src/
 black src/

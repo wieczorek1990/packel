@@ -1,4 +1,6 @@
 #!/usr/bin/env fish
-# Runs packel.
+# Runs code.
+# To be run from root directory.
 
-poetry run packel ../servers.toml
+cd packel/src/ || exit 1
+poetry run packel ../../servers.toml
