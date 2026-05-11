@@ -2,7 +2,7 @@
 # Dumps the TOML servers file as JSON.
 import json
 import sys
-import tomllib
+import tomli as tomllib
 
 
 if len(sys.argv) != 2:
