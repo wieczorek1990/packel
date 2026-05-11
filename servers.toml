@@ -1,11 +1,11 @@
 [rooms.first-workshop]
 name = "1-st workshop"
-address = "ul. Spichrzowa 7"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
 [rooms.second-workshop]
 name = "2-nd workshop"
-address = "ul. Spichrzowa 7A"
+address = "ul. Spichrzowa 7A, 62-045 Pniewy, Wielkopolska, Poland"
 
 [rooms.first-workshop.servers.imac-2019]
 os = "macOS"
