@@ -1,12 +1,12 @@
 [rooms.first-workshop]
 name = "1-st workshop"
-purpose = "Management, Arts"
+purpose = "Arts, Management, Frontend"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
 [rooms.second-workshop]
 name = "2-nd workshop"
-purpose = "Servers, Backend"
+purpose = "Servers, Scripts, Backend"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
