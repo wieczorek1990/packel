@@ -1,11 +1,14 @@
 [rooms.first-workshop]
 name = "1-st workshop"
+purpose = "Management, Arts"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
 [rooms.second-workshop]
 name = "2-nd workshop"
-address = "ul. Spichrzowa 7A, 62-045 Pniewy, Wielkopolska, Poland"
+purpose = "Servers, Backend"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
+broadcast = "192.168.8.255"
 
 [rooms.first-workshop.servers.imac-2019]
 os = "macOS"
@@ -23,18 +26,26 @@ takeaway = true
 worth = 12000
 stable = true
 
-[rooms.first-workshop.servers.thinkpad-t410]
+[rooms.second-workshop.servers.thinkpad-t410]
 os = "Fedora"
 mac = "b2:b4:cc:8a:fa:b7"
 broadcast = "192.168.0.255"
-takeaway = true
+takeaway = false
 worth = 5000
 stable = false
 
-[rooms.first-workshop.servers.ideapad-y550]
+[rooms.second-workshop.servers.ideapad-y550]
 os = "Fedora"
 mac = "f2:23:af:8d:15:d5"
 broadcast = "192.168.0.255"
 takeaway = false
 worth = 3500
 stable = false
+
+[rooms.second-workshop.servers.thinkpad-e525]
+os = "Fedora"
+mac = "f2:5f:f4:f5:1f:c3"
+broadcast = "192.168.0.255"
+takeaway = false
+worth = 2500
+stable = true
