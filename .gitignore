@@ -10,3 +10,6 @@
 # Python
 *.pyc
 __pycache__/
+
+# Poetry
+poetry.lock
