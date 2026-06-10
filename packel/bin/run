@@ -2,5 +2,7 @@
 # Runs code.
 # To be run from root directory.
 
-cd ./packel/src/ || exit 1
+source (dirname (status --current-filename))/common
+
+cd ./src/ || exit 1
 poetry run packel ../../servers.toml

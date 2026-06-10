@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+# Sets up.
+
+set -x PYTHONDONTWRITEBYTECODE 1

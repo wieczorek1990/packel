@@ -1,4 +1,6 @@
 #!/usr/bin/env fish
 # Runs tests.
 
+source (dirname (status --current-filename))/common
+
 poetry run python -m unittest
