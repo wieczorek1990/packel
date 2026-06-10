@@ -33,15 +33,27 @@ class Update:
 
 class FedoraUpdate(Update):
     def core(self) -> None:
-        remote_system(self.host, self.password, f"""echo {self.password} | sudo -S dnf upgrade --assumeyes --refresh""")
+        remote_system(
+            self.host,
+            self.password,
+            f"""echo {self.password} | sudo -S dnf upgrade --assumeyes --refresh""",
+        )
 
     def needs_restarting(self) -> None:
-        remote_system(self.host, self.password, f"""echo {self.password} | sudo -S dnf needs-restarting""")
+        remote_system(
+            self.host,
+            self.password,
+            f"""echo {self.password} | sudo -S dnf needs-restarting""",
+        )
 
 
 class MacOSUpdate(Update):
     def core(self) -> None:
-        remote_system(self.host, self.password, f"""echo {self.password} | sudo -S softwareupdate --background""")
+        remote_system(
+            self.host,
+            self.password,
+            f"""echo {self.password} | sudo -S softwareupdate --background""",
+        )
 
     def needs_restarting(self) -> None:
         pass
