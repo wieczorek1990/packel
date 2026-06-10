@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+# Cleans.
+
+rm -fr "**/*.pyc" "**/__pycache__"
