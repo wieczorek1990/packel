@@ -23,7 +23,7 @@ model = "iMac"
 worth = 8500
 stable = false
 
-[rooms.first-workshop.servers.macbookpro-0]
+[rooms-second-workshop.servers.macbookpro-0]
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
 broadcast = "192.168.0.255"
