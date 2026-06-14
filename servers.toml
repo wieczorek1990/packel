@@ -15,54 +15,54 @@ broadcast = "192.168.8.255"
 [rooms.first-workshop.servers.imac-0]
 os = "macOS"
 mac = "9e:32:87:d4:c2:d0"
-broadcast = "192.168.8.255"
 takeaway = false
 producer = "Apple"
 production_year = 2019
 model = "iMac"
 worth = 8500
 stable = false
+taken = false
 
 [rooms-second-workshop.servers.macbookpro-0]
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
-broadcast = "192.168.0.255"
 takeaway = true
 producer = "Apple"
 production_year = 2023
 model = "MacBook Pro"
 worth = 12000
 stable = true
+taken = false
 
 [rooms.second-workshop.servers.thinkpad-0]
 os = "Fedora"
 mac = "b2:b4:cc:8a:fa:b7"
-broadcast = "192.168.0.255"
 takeaway = false
 producer = "Lenovo"
 production_year = 2010
 model = "ThinkPad T410"
 worth = 5000
 stable = false
+taken = false
 
 [rooms.second-workshop.servers.ideapad-0]
 os = "Fedora"
 mac = "f2:23:af:8d:15:d5"
-broadcast = "192.168.0.255"
 takeaway = false
 producer = "Lenovo"
 production_year = 2009
 model = "IdeaPad Y550"
 worth = 3500
 stable = false
+taken = true
 
 [rooms.second-workshop.servers.thinkpad-1]
 os = "Fedora"
 mac = "f2:5f:f4:f5:1f:c3"
-broadcast = "192.168.0.255"
 takeaway = false
 producer = "Lenovo"
 production_year = 2011
 model = "ThinkPad E525"
 worth = 2500
 stable = true
+taken = false
