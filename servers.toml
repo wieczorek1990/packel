@@ -1,4 +1,5 @@
 [rooms.first-workshop]
+id = "I"
 name = "1-st workshop"
 description = "The little room to north-west on the level 1."
 purpose = "Arts, Management, Frontend"
@@ -6,6 +7,7 @@ address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
 [rooms.second-workshop]
+id = "II"
 name = "2-nd workshop"
 description = "The large room in the south-west on the level 1."
 purpose = "Servers, Scripts, Backend"
@@ -23,6 +25,7 @@ model = "iMac"
 worth = 8500
 stable = false
 taken = false
+fire_possible = false
 
 [rooms-second-workshop.servers.macbookpro-0]
 id = "II"
@@ -35,6 +38,7 @@ model = "MacBook Pro"
 worth = 12000
 stable = false
 taken = false
+fire_possible = false
 
 [rooms.second-workshop.servers.thinkpad-0]
 id = "III"
@@ -47,6 +51,7 @@ model = "ThinkPad T410"
 worth = 5000
 stable = false
 taken = false
+fire_possible = false
 
 [rooms.second-workshop.servers.ideapad-0]
 id = "IV"
@@ -59,6 +64,7 @@ model = "IdeaPad Y550"
 worth = 3500
 stable = false
 taken = true
+fire_possible = true
 
 [rooms.second-workshop.servers.thinkpad-1]
 id = "V"
@@ -71,3 +77,4 @@ model = "ThinkPad E525"
 worth = 2500
 stable = false
 taken = false
+fire_possible = false
