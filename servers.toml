@@ -13,6 +13,7 @@ address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
 [rooms.first-workshop.servers.imac-0]
+id = "I"
 os = "macOS"
 mac = "9e:32:87:d4:c2:d0"
 takeaway = false
@@ -24,6 +25,7 @@ stable = false
 taken = false
 
 [rooms-second-workshop.servers.macbookpro-0]
+id = "II"
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
 takeaway = true
@@ -35,6 +37,7 @@ stable = false
 taken = false
 
 [rooms.second-workshop.servers.thinkpad-0]
+id = "III"
 os = "Fedora"
 mac = "b2:b4:cc:8a:fa:b7"
 takeaway = false
@@ -46,6 +49,7 @@ stable = false
 taken = false
 
 [rooms.second-workshop.servers.ideapad-0]
+id = "IV"
 os = "Fedora"
 mac = "f2:23:af:8d:15:d5"
 takeaway = false
@@ -57,6 +61,7 @@ stable = false
 taken = true
 
 [rooms.second-workshop.servers.thinkpad-1]
+id = "V"
 os = "Fedora"
 mac = "f2:5f:f4:f5:1f:c3"
 takeaway = false
