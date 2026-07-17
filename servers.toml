@@ -51,6 +51,7 @@ model = "ThinkPad T410"
 worth = 5000
 stable = false
 taken = true
+taken_by = "Mija"
 fire_possible = false
 
 [rooms.second-workshop.servers.ideapad-0]
@@ -64,6 +65,7 @@ model = "IdeaPad Y550"
 worth = 3500
 stable = false
 taken = true
+taken_by = "Foo"
 fire_possible = true
 
 [rooms.second-workshop.servers.thinkpad-1]
@@ -77,4 +79,5 @@ model = "ThinkPad E525"
 worth = 2500
 stable = false
 taken = true
+taken_by = "Mija"
 fire_possible = false
