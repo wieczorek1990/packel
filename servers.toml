@@ -50,8 +50,7 @@ production_year = 2010
 model = "ThinkPad T410"
 worth = 5000
 stable = false
-taken = true
-taken_by = "Mija"
+taken = false
 fire_possible = false
 
 [rooms.second-workshop.servers.ideapad-0]
@@ -64,8 +63,7 @@ production_year = 2009
 model = "IdeaPad Y550"
 worth = 3500
 stable = false
-taken = true
-taken_by = "Foo"
+taken = false
 fire_possible = true
 
 [rooms.second-workshop.servers.thinkpad-1]
@@ -78,6 +76,5 @@ production_year = 2011
 model = "ThinkPad E525"
 worth = 2500
 stable = false
-taken = true
-taken_by = "Mija"
+taken = false
 fire_possible = false
