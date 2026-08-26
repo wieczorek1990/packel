@@ -14,6 +14,14 @@ purpose = "Servers, Scripts, Backend"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
+[rooms.third-workshop]
+id = "III"
+name = "3-rd workshop"
+description = "The carpet of level 2."
+purpose = "Anything"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
+broadcast = "192.168.8.255"
+
 [rooms.first-workshop.servers.imac-0]
 id = "I"
 os = "macOS"
@@ -31,7 +39,7 @@ fire_possible = false
 id = "II"
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
-takeaway = true
+takeaway = false
 producer = "Apple"
 production_year = 2023
 model = "MacBook Pro"
@@ -40,24 +48,24 @@ stable = false
 taken = false
 fire_possible = false
 
-[rooms.second-workshop.servers.thinkpad-0]
+[rooms.third-workshop.servers.thinkpad-0]
 id = "III"
 os = "Fedora"
 mac = "b2:b4:cc:8a:fa:b7"
-takeaway = false
+takeaway = true
 producer = "Lenovo"
 production_year = 2010
 model = "ThinkPad T410"
 worth = 5000
 stable = false
 taken = false
-fire_possible = false
+fire_possible = true
 
-[rooms.second-workshop.servers.ideapad-0]
+[rooms.third-workshop.servers.ideapad-0]
 id = "IV"
 os = "Fedora"
 mac = "f2:23:af:8d:15:d5"
-takeaway = false
+takeaway = true
 producer = "Lenovo"
 production_year = 2009
 model = "IdeaPad Y550"
@@ -66,15 +74,15 @@ stable = false
 taken = false
 fire_possible = true
 
-[rooms.second-workshop.servers.thinkpad-1]
+[rooms.third-workshop.servers.thinkpad-1]
 id = "V"
 os = "Fedora"
 mac = "f2:5f:f4:f5:1f:c3"
-takeaway = false
+takeaway = true
 producer = "Lenovo"
 production_year = 2011
 model = "ThinkPad E525"
 worth = 2500
 stable = false
 taken = false
-fire_possible = false
+fire_possible = true
