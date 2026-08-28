@@ -8,7 +8,7 @@ def trim_ip(ip: str) -> str:
 
 
 def process_arp_data(arp_data: str) -> dict:
-    result = dict()
+    result = {}
     for line in arp_data.splitlines():
         ip, mac = extract_ip_and_mac(line)
         ip = trim_ip(ip)

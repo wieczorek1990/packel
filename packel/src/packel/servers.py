@@ -1,6 +1,7 @@
 import getpass
-import tomllib
 from os import system
+
+import tomllib
 
 from packel import arp, up
 
