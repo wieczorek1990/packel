@@ -49,7 +49,7 @@ def process(data: dict) -> None:
     print("Finished processing servers...")
 
 
-def init(filename: str) -> dict:
+def init(filename: str) -> dict[str, str|bool]:
     with open(filename, "rb") as file_descriptor:
         data = tomllib.load(file_descriptor)
     return data
