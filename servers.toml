@@ -22,6 +22,14 @@ purpose = "Anything"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
+[rooms.fourth-workshop]
+id = "IV"
+name = "4-th workshop"
+description = "The salon on ground level."
+purpose = "Anything"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
+broadcast = "192.168.8.255"
+
 [rooms.first-workshop.servers.imac-0]
 id = "I"
 os = "macOS"
@@ -35,7 +43,7 @@ stable = false
 taken = false
 fire_possible = false
 
-[rooms-second-workshop.servers.macbookpro-0]
+[rooms-fourth-workshop.servers.macbookpro-0]
 id = "II"
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
