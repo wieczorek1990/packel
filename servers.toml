@@ -43,7 +43,7 @@ stable = false
 taken = false
 fire_possible = false
 
-[rooms.second.servers.thinkpad-1]
+[rooms.third.servers.thinkpad-1]
 id = "V"
 os = "Fedora"
 mac = "f2:5f:f4:f5:1f:c3"
@@ -82,7 +82,7 @@ stable = false
 taken = false
 fire_possible = true
 
-[rooms.fourth.servers.macbookpro-0]
+[rooms.second.servers.macbookpro-0]
 id = "II"
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
