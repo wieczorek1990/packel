@@ -2,7 +2,7 @@
 id = "I"
 name = "1-st room"
 description = "The little room to north-west on the level 1."
-purpose = "Arts, Management, Frontend"
+purpose = "Arts, Games, Management, Frontend"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
@@ -43,18 +43,18 @@ stable = false
 taken = false
 fire_possible = false
 
-[rooms.third.servers.thinkpad-1]
-id = "V"
-os = "Fedora"
-mac = "f2:5f:f4:f5:1f:c3"
-takeaway = true
-producer = "Lenovo"
-production_year = 2011
-model = "ThinkPad E525"
-worth = 2500
+[rooms.second.servers.macbookpro-0]
+id = "II"
+os = "macOS"
+mac = "c2:f7:27:c8:19:79"
+takeaway = false
+producer = "Apple"
+production_year = 2023
+model = "MacBook Pro"
+worth = 12000
 stable = false
 taken = false
-fire_possible = true
+fire_possible = false
 
 [rooms.third.servers.thinkpad-0]
 id = "III"
@@ -65,6 +65,19 @@ producer = "Lenovo"
 production_year = 2010
 model = "ThinkPad T410"
 worth = 5000
+stable = false
+taken = false
+fire_possible = true
+
+[rooms.third.servers.thinkpad-1]
+id = "V"
+os = "Fedora"
+mac = "f2:5f:f4:f5:1f:c3"
+takeaway = true
+producer = "Lenovo"
+production_year = 2011
+model = "ThinkPad E525"
+worth = 2500
 stable = false
 taken = false
 fire_possible = true
@@ -81,16 +94,3 @@ worth = 3500
 stable = false
 taken = false
 fire_possible = true
-
-[rooms.second.servers.macbookpro-0]
-id = "II"
-os = "macOS"
-mac = "c2:f7:27:c8:19:79"
-takeaway = false
-producer = "Apple"
-production_year = 2023
-model = "MacBook Pro"
-worth = 12000
-stable = false
-taken = false
-fire_possible = false
