@@ -1,3 +1,6 @@
+[rooms.owner.lukaszwieczorek]
+name = "Łukasz Wieczorek"
+
 [rooms.first]
 id = "I"
 name = "1-st room"
@@ -17,7 +20,7 @@ broadcast = "192.168.8.255"
 [rooms.third]
 id = "III"
 name = "3-rd room"
-description = "The carpet of level 2."
+description = "The carpet of the attic."
 purpose = "Anything"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
