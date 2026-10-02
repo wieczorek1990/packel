@@ -46,7 +46,7 @@ stable = false
 taken = false
 fire_possible = false
 
-[rooms.first.servers.macbookpro-0]
+[rooms.second.servers.macbookpro-0]
 id = "II"
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
