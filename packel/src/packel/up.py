@@ -24,7 +24,11 @@ def remote_sudo(host: str, password: str, command: str) -> fabric.Result | None:
     try:
         result = connection.sudo(command)
         return result
-    except (invoke.exceptions.AuthFailure, invoke.exceptions.UnexpectedExit, paramiko.ssh_exception.SSHException) as e:
+    except (
+        invoke.exceptions.AuthFailure,
+        invoke.exceptions.UnexpectedExit,
+        paramiko.ssh_exception.SSHException,
+    ) as e:
         logger.error("Error connecting to %s: %s", host, e)
         return None
 

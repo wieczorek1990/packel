@@ -23,7 +23,9 @@ def process(data: dict) -> None:
             continue
 
         logger.info("Broadcasting: %s", broadcast)
-        subprocess.run(["ping", "-c", "1", broadcast], check=False, stdout=subprocess.DEVNULL)
+        subprocess.run(
+            ["ping", "-c", "1", broadcast], check=False, stdout=subprocess.DEVNULL
+        )
 
         try:
             servers = workshop_data["servers"]
