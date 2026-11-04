@@ -51,14 +51,22 @@ class TestGetConnection(unittest.TestCase):
 
     @patch("packel.up.fabric.Connection")
     def test_get_connection_creates_connection(self, mock_connection_class):
-        """get_connection should create a fabric Connection with correct params."""
-        get_connection("192.168.1.1", "password")
+        """get_connection should create a fabric Connection with SSH key auth and sudo password."""
+        with patch("packel.up.Path.home") as mock_home:
+            from pathlib import Path as RealPath
+            
+            mock_home.return_value = RealPath("/home/user")
+            
+            get_connection("192.168.1.1", "key_pass", "sudo_pass")
 
-        mock_connection_class.assert_called_once_with(
-            "192.168.1.1",
-            user="administrator",
-            connect_kwargs={"password": "password"},
-        )
+            mock_connection_class.assert_called_once_with(
+                "192.168.1.1",
+                user="administrator",
+                connect_kwargs={
+                    "key_filename": "/home/user/.ssh/id_ed25519",
+                    "passphrase": "key_pass",
+                },
+            )
 
 
 class TestRemoteSudo(unittest.TestCase):
@@ -72,9 +80,9 @@ class TestRemoteSudo(unittest.TestCase):
         mock_result = MagicMock()
         mock_connection.sudo.return_value = mock_result
 
-        result = remote_sudo("192.168.1.1", "password", "dnf upgrade")
+        result = remote_sudo("192.168.1.1", "key_pass", "sudo_pass", "dnf upgrade")
 
-        mock_get_connection.assert_called_once_with("192.168.1.1", "password")
+        mock_get_connection.assert_called_once_with("192.168.1.1", "key_pass", "sudo_pass")
         mock_connection.sudo.assert_called_once_with("dnf upgrade")
         self.assertEqual(result, mock_result)
 
@@ -89,7 +97,7 @@ class TestRemoteSudo(unittest.TestCase):
             "Connection refused"
         )
 
-        result = remote_sudo("192.168.1.1", "password", "dnf upgrade")
+        result = remote_sudo("192.168.1.1", "key_pass", "sudo_pass", "dnf upgrade")
 
         self.assertIsNone(result)
 
@@ -101,7 +109,7 @@ class TestRemoteSudo(unittest.TestCase):
         mock_connection.sudo.return_value = MagicMock()
 
         # Even if the command contains special characters, it should be passed as-is
-        remote_sudo("192.168.1.1", "p@$$w0rd!", "dnf upgrade")
+        remote_sudo("192.168.1.1", "key_pass", "p@$$w0rd!", "dnf upgrade")
 
         mock_connection.sudo.assert_called_once_with("dnf upgrade")
 
@@ -112,26 +120,27 @@ class TestFedoraUpdate(unittest.TestCase):
     @patch("packel.up.remote_sudo")
     def test_fedora_update_core_runs_dnf(self, mock_remote):
         """FedoraUpdate.core should run dnf upgrade command via sudo."""
-        update = FedoraUpdate("192.168.1.1", "secret", "Fedora")
+        update = FedoraUpdate("192.168.1.1", "key_pass", "sudo_pass", "Fedora")
         update.core()
 
         mock_remote.assert_called_once()
         call_args = mock_remote.call_args[0]
         self.assertEqual(call_args[0], "192.168.1.1")
-        self.assertEqual(call_args[1], "secret")
+        self.assertEqual(call_args[1], "key_pass")
+        self.assertEqual(call_args[2], "sudo_pass")
         # Command should NOT contain the password
-        self.assertEqual(call_args[2], "dnf upgrade --assumeyes --refresh")
-        self.assertNotIn("secret", call_args[2])
+        self.assertEqual(call_args[3], "dnf upgrade --assumeyes --refresh")
+        self.assertNotIn("key_pass", call_args[3])
 
     @patch("packel.up.remote_sudo")
     def test_fedora_update_needs_restarting(self, mock_remote):
         """FedoraUpdate.needs_restarting should check for restarts via sudo."""
-        update = FedoraUpdate("192.168.1.1", "secret", "Fedora")
+        update = FedoraUpdate("192.168.1.1", "key_pass", "sudo_pass", "Fedora")
         update.needs_restarting()
 
         mock_remote.assert_called_once()
         call_args = mock_remote.call_args[0]
-        self.assertEqual(call_args[2], "dnf needs-restarting")
+        self.assertEqual(call_args[3], "dnf needs-restarting")
 
 
 class TestMacOSUpdate(unittest.TestCase):
@@ -140,16 +149,16 @@ class TestMacOSUpdate(unittest.TestCase):
     @patch("packel.up.remote_sudo")
     def test_macos_update_core_runs_softwareupdate(self, mock_remote):
         """MacOSUpdate.core should run softwareupdate command via sudo."""
-        update = MacOSUpdate("192.168.1.1", "secret", "macOS")
+        update = MacOSUpdate("192.168.1.1", "key_pass", "sudo_pass", "macOS")
         update.core()
 
         mock_remote.assert_called_once()
         call_args = mock_remote.call_args[0]
-        self.assertEqual(call_args[2], "softwareupdate --background")
+        self.assertEqual(call_args[3], "softwareupdate --background")
 
     def test_macos_update_needs_restarting_is_noop(self):
         """MacOSUpdate.needs_restarting should do nothing."""
-        update = MacOSUpdate("192.168.1.1", "secret", "macOS")
+        update = MacOSUpdate("192.168.1.1", "key_pass", "sudo_pass", "macOS")
         # Should not raise
         update.needs_restarting()
 
@@ -160,7 +169,7 @@ class TestNotSupportedUpdate(unittest.TestCase):
     @patch("packel.up.logger")
     def test_not_supported_proceed_logs_warning(self, mock_logger):
         """NotSupportedUpdate.proceed should log a skip warning."""
-        update = NotSupportedUpdate("192.168.1.1", "secret", "Ubuntu")
+        update = NotSupportedUpdate("192.168.1.1", "key_pass", "sudo_pass", "Ubuntu")
 
         update.proceed()
         mock_logger.warning.assert_called_once_with(
@@ -169,12 +178,12 @@ class TestNotSupportedUpdate(unittest.TestCase):
 
     def test_not_supported_core_is_noop(self):
         """NotSupportedUpdate.core should do nothing."""
-        update = NotSupportedUpdate("192.168.1.1", "secret", "Ubuntu")
+        update = NotSupportedUpdate("192.168.1.1", "key_pass", "sudo_pass", "Ubuntu")
         update.core()  # Should not raise
 
     def test_not_supported_needs_restarting_is_noop(self):
         """NotSupportedUpdate.needs_restarting should do nothing."""
-        update = NotSupportedUpdate("192.168.1.1", "secret", "Ubuntu")
+        update = NotSupportedUpdate("192.168.1.1", "key_pass", "sudo_pass", "Ubuntu")
         update.needs_restarting()  # Should not raise
 
 
@@ -182,21 +191,22 @@ class TestUpdateBase(unittest.TestCase):
     """Tests for the base Update class."""
 
     def test_update_initialization(self):
-        """Update should store host, password, and os."""
-        update = Update("192.168.1.1", "secret", "Fedora")
+        """Update should store host, key_passphrase, sudo_password, and os."""
+        update = Update("192.168.1.1", "key_pass", "sudo_pass", "Fedora")
         self.assertEqual(update.host, "192.168.1.1")
-        self.assertEqual(update.password, "secret")
+        self.assertEqual(update.key_passphrase, "key_pass")
+        self.assertEqual(update.sudo_password, "sudo_pass")
         self.assertEqual(update.os, "Fedora")
 
     def test_update_core_raises_not_implemented(self):
         """Base Update.core should raise NotImplementedError."""
-        update = Update("192.168.1.1", "secret", "Fedora")
+        update = Update("192.168.1.1", "key_pass", "sudo_pass", "Fedora")
         with self.assertRaises(NotImplementedError):
             update.core()
 
     def test_update_needs_restarting_raises_not_implemented(self):
         """Base Update.needs_restarting should raise NotImplementedError."""
-        update = Update("192.168.1.1", "secret", "Fedora")
+        update = Update("192.168.1.1", "key_pass", "sudo_pass", "Fedora")
         with self.assertRaises(NotImplementedError):
             update.needs_restarting()
 

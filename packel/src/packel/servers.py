@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 
 
 def process(data: dict) -> None:
-    password = getpass.getpass("Enter password to the SSH key: ")
+    key_passphrase = getpass.getpass("Enter passphrase for the SSH key: ")
+    sudo_password = getpass.getpass("Enter sudo password for remote servers: ")
 
     logger.info("Processing servers...")
     for workshop, workshop_data in data["rooms"].items():
@@ -57,7 +58,7 @@ def process(data: dict) -> None:
             os = server_data["os"]
             update_class = up.get_update_for_os(os)
 
-            update = update_class(host, password, os)
+            update = update_class(host, key_passphrase, sudo_password, os)
             update.proceed()
     logger.info("Finished processing servers...")
 
