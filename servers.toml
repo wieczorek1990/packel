@@ -33,20 +33,7 @@ purpose = "Anything"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
-[rooms.first.servers.imac-0]
-id = "I"
-os = "macOS"
-mac = "9e:32:87:d4:c2:d0"
-takeaway = false
-producer = "Apple"
-production_year = 2019
-model = "iMac"
-worth = 8500
-stable = false
-taken = false
-fire_possible = false
-
-[rooms.second.servers.macbookpro-0]
+[rooms.first.servers.macbookpro-0]
 id = "II"
 os = "macOS"
 mac = "c2:f7:27:c8:19:79"
@@ -58,8 +45,9 @@ worth = 12000
 stable = false
 taken = false
 fire_possible = false
+owner = "Łukasz Wieczorek"
 
-[rooms.third.servers.thinkpad-0]
+[rooms.first.servers.thinkpad-0]
 id = "III"
 os = "Fedora"
 mac = "b2:b4:cc:8a:fa:b7"
@@ -71,8 +59,9 @@ worth = 5000
 stable = false
 taken = false
 fire_possible = true
+owner = "Łukasz Wieczorek"
 
-[rooms.third.servers.thinkpad-1]
+[rooms.first.servers.thinkpad-1]
 id = "V"
 os = "Fedora"
 mac = "f2:5f:f4:f5:1f:c3"
@@ -84,8 +73,9 @@ worth = 2500
 stable = false
 taken = false
 fire_possible = true
+owner = "Łukasz Wieczorek"
 
-[rooms.third.servers.ideapad-0]
+[rooms.first.servers.ideapad-0]
 id = "IV"
 os = "Fedora"
 mac = "f2:23:af:8d:15:d5"
@@ -97,3 +87,32 @@ worth = 3500
 stable = false
 taken = false
 fire_possible = true
+owner = "Łukasz Wieczorek"
+
+[rooms.second.servers.imac-0]
+id = "I"
+os = "macOS"
+mac = "9e:32:87:d4:c2:d0"
+takeaway = false
+producer = "Apple"
+production_year = 2019
+model = "iMac"
+worth = 8500
+stable = false
+taken = false
+fire_possible = false
+owner = "Łukasz Wieczorek"
+
+[rooms.fourth.servers.macbookneo-0]
+id = "VI"
+os = "macOS"
+mac = ""
+takeaway = false
+producer = "Apple"
+production_year = 2026
+model = "MacBook Neo"
+worth = 4000
+stable = true
+taken = true
+fire_possible = false
+owner = "Renata Wieczorek"
