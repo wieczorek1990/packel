@@ -7,7 +7,8 @@ from packel.up import (
     FedoraUpdate,
     MacOSUpdate,
     NotSupportedUpdate,
-    remote_system,
+    remote_sudo,
+    get_connection,
 )
 
 
@@ -45,45 +46,68 @@ class TestGetUpdateForOS(unittest.TestCase):
         self.assertEqual(result, NotSupportedUpdate)
 
 
-class TestRemoteSystem(unittest.TestCase):
-    """Tests for the remote_system() function."""
+class TestGetConnection(unittest.TestCase):
+    """Tests for the get_connection() function."""
 
     @patch("packel.up.fabric.Connection")
-    def test_remote_system_runs_command(self, mock_connection_class):
-        """remote_system should run commands via fabric Connection."""
-        mock_connection = MagicMock()
-        mock_connection_class.return_value = mock_connection
-        mock_result = MagicMock()
-        mock_connection.run.return_value = mock_result
-
-        result = remote_system("192.168.1.1", "password", "dnf upgrade")
+    def test_get_connection_creates_connection(self, mock_connection_class):
+        """get_connection should create a fabric Connection with correct params."""
+        get_connection("192.168.1.1", "password")
 
         mock_connection_class.assert_called_once_with(
             "192.168.1.1",
             user="administrator",
             connect_kwargs={"password": "password"},
         )
-        mock_connection.run.assert_called_once_with("dnf upgrade")
+
+
+class TestRemoteSudo(unittest.TestCase):
+    """Tests for the remote_sudo() function."""
+
+    @patch("packel.up.get_connection")
+    def test_remote_sudo_runs_sudo_command(self, mock_get_connection):
+        """remote_sudo should run commands via connection.sudo()."""
+        mock_connection = MagicMock()
+        mock_get_connection.return_value = mock_connection
+        mock_result = MagicMock()
+        mock_connection.sudo.return_value = mock_result
+
+        result = remote_sudo("192.168.1.1", "password", "dnf upgrade")
+
+        mock_get_connection.assert_called_once_with("192.168.1.1", "password")
+        mock_connection.sudo.assert_called_once_with("dnf upgrade")
         self.assertEqual(result, mock_result)
 
-    @patch("packel.up.fabric.Connection")
-    def test_remote_system_handles_connection_error(self, mock_connection_class):
-        """remote_system should return None on connection errors."""
+    @patch("packel.up.get_connection")
+    def test_remote_sudo_handles_connection_error(self, mock_get_connection):
+        """remote_sudo should return None on connection errors."""
         mock_connection = MagicMock()
-        mock_connection_class.return_value = mock_connection
-        mock_connection.run.side_effect = Exception("Connection refused")
+        mock_get_connection.return_value = mock_connection
+        mock_connection.sudo.side_effect = Exception("Connection refused")
 
-        result = remote_system("192.168.1.1", "password", "dnf upgrade")
+        result = remote_sudo("192.168.1.1", "password", "dnf upgrade")
 
         self.assertIsNone(result)
+
+    @patch("packel.up.get_connection")
+    def test_remote_sudo_command_no_password_injection(self, mock_get_connection):
+        """remote_sudo should not embed the password in the command string."""
+        mock_connection = MagicMock()
+        mock_get_connection.return_value = mock_connection
+        mock_connection.sudo.return_value = MagicMock()
+
+        # Even if the command contains special characters, it should be passed as-is
+        remote_sudo("192.168.1.1", "p@$$w0rd!", "dnf upgrade")
+
+        mock_connection.sudo.assert_called_once_with("dnf upgrade")
 
 
 class TestFedoraUpdate(unittest.TestCase):
     """Tests for the FedoraUpdate class."""
 
-    @patch("packel.up.remote_system")
+    @patch("packel.up.remote_sudo")
     def test_fedora_update_core_runs_dnf(self, mock_remote):
-        """FedoraUpdate.core should run dnf upgrade command."""
+        """FedoraUpdate.core should run dnf upgrade command via sudo."""
         update = FedoraUpdate("192.168.1.1", "secret", "Fedora")
         update.core()
 
@@ -91,31 +115,33 @@ class TestFedoraUpdate(unittest.TestCase):
         call_args = mock_remote.call_args[0]
         self.assertEqual(call_args[0], "192.168.1.1")
         self.assertEqual(call_args[1], "secret")
-        self.assertIn("dnf upgrade", call_args[2])
+        # Command should NOT contain the password
+        self.assertEqual(call_args[2], "dnf upgrade --assumeyes --refresh")
+        self.assertNotIn("secret", call_args[2])
 
-    @patch("packel.up.remote_system")
+    @patch("packel.up.remote_sudo")
     def test_fedora_update_needs_restarting(self, mock_remote):
-        """FedoraUpdate.needs_restarting should check for restarts."""
+        """FedoraUpdate.needs_restarting should check for restarts via sudo."""
         update = FedoraUpdate("192.168.1.1", "secret", "Fedora")
         update.needs_restarting()
 
         mock_remote.assert_called_once()
         call_args = mock_remote.call_args[0]
-        self.assertIn("needs-restarting", call_args[2])
+        self.assertEqual(call_args[2], "dnf needs-restarting")
 
 
 class TestMacOSUpdate(unittest.TestCase):
     """Tests for the MacOSUpdate class."""
 
-    @patch("packel.up.remote_system")
+    @patch("packel.up.remote_sudo")
     def test_macos_update_core_runs_softwareupdate(self, mock_remote):
-        """MacOSUpdate.core should run softwareupdate command."""
+        """MacOSUpdate.core should run softwareupdate command via sudo."""
         update = MacOSUpdate("192.168.1.1", "secret", "macOS")
         update.core()
 
         mock_remote.assert_called_once()
         call_args = mock_remote.call_args[0]
-        self.assertIn("softwareupdate", call_args[2])
+        self.assertEqual(call_args[2], "softwareupdate --background")
 
     def test_macos_update_needs_restarting_is_noop(self):
         """MacOSUpdate.needs_restarting should do nothing."""

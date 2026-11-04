@@ -1,5 +1,5 @@
 import getpass
-from os import system
+import subprocess
 
 import tomllib
 
@@ -20,7 +20,7 @@ def process(data: dict) -> None:
             continue
 
         print("Broadcasting: ", broadcast)
-        system(f"ping -c 1 {broadcast} > /dev/null")
+        subprocess.run(["ping", "-c", "1", broadcast], stdout=subprocess.DEVNULL)
 
         try:
             servers = workshop_data["servers"]

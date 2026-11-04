@@ -3,14 +3,20 @@ import fabric
 from packel import constants
 
 
-def remote_system(host: str, password: str, commands: str) -> fabric.Result | None:
-    connection = fabric.Connection(
+def get_connection(host: str, password: str) -> fabric.Connection:
+    """Create a Fabric Connection to the given host."""
+    return fabric.Connection(
         host,
         user=constants.USERNAME,
         connect_kwargs={"password": password},
     )
+
+
+def remote_sudo(host: str, password: str, command: str) -> fabric.Result | None:
+    """Run a command with sudo on a remote host, without exposing the password on the command line."""
+    connection = get_connection(host, password)
     try:
-        result = connection.run(commands)
+        result = connection.sudo(command)
         return result
     except Exception as e:
         print(f"Error connecting to {host}: {e}")
@@ -38,26 +44,26 @@ class Update:
 
 class FedoraUpdate(Update):
     def core(self) -> None:
-        remote_system(
+        remote_sudo(
             self.host,
             self.password,
-            f"""echo {self.password} | sudo -S dnf upgrade --assumeyes --refresh""",
+            "dnf upgrade --assumeyes --refresh",
         )
 
     def needs_restarting(self) -> None:
-        remote_system(
+        remote_sudo(
             self.host,
             self.password,
-            f"""echo {self.password} | sudo -S dnf needs-restarting""",
+            "dnf needs-restarting",
         )
 
 
 class MacOSUpdate(Update):
     def core(self) -> None:
-        remote_system(
+        remote_sudo(
             self.host,
             self.password,
-            f"""echo {self.password} | sudo -S softwareupdate --background""",
+            "softwareupdate --background",
         )
 
     def needs_restarting(self) -> None:
