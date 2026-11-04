@@ -15,7 +15,7 @@ broadcast = "192.168.8.255"
 [rooms.first.servers.macbookpro-0]
 id = "II"
 os = "macOS"
-mac = "c2:f7:27:c8:19:79"
+mac = "66:d5:31:63:5c:78"
 takeaway = false
 producer = "Apple"
 production_year = 2023
@@ -25,6 +25,7 @@ stable = false
 taken = false
 fire_possible = false
 owner = "Łukasz Wieczorek"
+updatable = true
 
 [rooms.first.servers.thinkpad-0]
 id = "III"
@@ -39,6 +40,7 @@ stable = false
 taken = false
 fire_possible = true
 owner = "Łukasz Wieczorek"
+updatable = false
 
 [rooms.first.servers.thinkpad-1]
 id = "V"
@@ -53,6 +55,7 @@ stable = false
 taken = false
 fire_possible = true
 owner = "Łukasz Wieczorek"
+updatable = false
 
 [rooms.first.servers.ideapad-0]
 id = "IV"
@@ -67,6 +70,7 @@ stable = false
 taken = false
 fire_possible = true
 owner = "Łukasz Wieczorek"
+updatable = false
 
 [rooms.second]
 id = "II"
@@ -79,7 +83,7 @@ broadcast = "192.168.8.255"
 [rooms.second.servers.imac-0]
 id = "I"
 os = "macOS"
-mac = "9e:32:87:d4:c2:d0"
+mac = "16:e7:2f:93:c1:36"
 takeaway = false
 producer = "Apple"
 production_year = 2019
@@ -89,6 +93,7 @@ stable = false
 taken = false
 fire_possible = false
 owner = "Łukasz Wieczorek"
+updatable = true
 
 [rooms.third]
 id = "III"
@@ -121,3 +126,4 @@ stable = true
 taken = true
 fire_possible = false
 owner = "Renata Wieczorek"
+updatable = false

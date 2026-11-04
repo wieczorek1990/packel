@@ -36,6 +36,11 @@ def process(data: dict) -> None:
         for server, server_data in servers.items():
             logger.info(f"Processing server: {server}")
 
+            updatable = server_data["updatable"]
+            if not updatable:
+                logger.warning("Non updatable server found.")
+                continue
+
             arp_data = arp.get_arp_data()
             arp_result = arp.process_arp_data(arp_data)
 
