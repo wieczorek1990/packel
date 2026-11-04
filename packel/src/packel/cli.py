@@ -5,7 +5,7 @@ from packel.servers import init, process
 
 def main() -> None:
     if len(sys.argv) != 2:
-        print("Usage:\tservers.py servers.toml")
+        print("Usage:\tpackel data/servers.toml")
         sys.exit(1)
 
     print("Starting reading requested...")

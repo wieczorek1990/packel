@@ -3,10 +3,10 @@
 import json
 import sys
 
-import tomli as tomllib
+import tomllib
 
 if len(sys.argv) != 2:
-    print("Usage:\tvalidate.py servers.toml")
+    print("Usage:\tvalidate.py data/servers.toml")
     sys.exit(1)
 
 filepath = sys.argv[1]

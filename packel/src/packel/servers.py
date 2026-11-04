@@ -44,7 +44,7 @@ def process(data: dict) -> None:
             os = server_data["os"]
             update_class = up.get_update_for_os(os)
 
-            update = update_class(host, password)
+            update = update_class(host, password, os)
             update.proceed()
     print("Finished processing servers...")
 

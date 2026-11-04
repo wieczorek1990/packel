@@ -9,14 +9,19 @@ def remote_system(host: str, password: str, commands: str) -> fabric.Result | No
         user=constants.USERNAME,
         connect_kwargs={"password": password},
     )
-    result = connection.run(commands)
-    return result
+    try:
+        result = connection.run(commands)
+        return result
+    except Exception as e:
+        print(f"Error connecting to {host}: {e}")
+        return None
 
 
 class Update:
-    def __init__(self, host: str, password: str) -> None:
+    def __init__(self, host: str, password: str, os: str) -> None:
         self.host = host
         self.password = password
+        self.os = os
 
     def core(self) -> None:
         raise NotImplementedError
@@ -67,7 +72,7 @@ class NotSupportedUpdate(Update):
         pass
 
     def proceed(self) -> None:
-        pass
+        print(f"OS '{self.os}' is not supported — skipping.")
 
 
 def get_update_for_os(
