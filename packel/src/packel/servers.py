@@ -1,6 +1,7 @@
 import getpass
 import logging
 import subprocess
+import time
 import tomllib
 from typing import Any
 
@@ -22,16 +23,21 @@ def process(data: dict) -> None:
             logger.warning("No broadcast found.")
             continue
 
-        logger.info("Broadcasting: %s", broadcast)
-        subprocess.run(
-            ["ping", "-c", "1", broadcast], check=False, stdout=subprocess.DEVNULL
-        )
-
         try:
             servers = workshop_data["servers"]
         except KeyError:
             logger.warning("No servers found.")
             continue
+
+        logger.info("Broadcasting: %s", broadcast)
+        subprocess.run(
+            ["ping", "-c", "1", broadcast], check=False, stdout=subprocess.DEVNULL
+        )
+        time.sleep(1)
+
+        arp_data, is_linux = arp.get_arp_data()
+        arp_result = arp.process_arp_data(arp_data, linux=is_linux)
+        logger.debug("ARP result: %s", arp_result)
 
         for server, server_data in servers.items():
             logger.info(f"Processing server: {server}")
@@ -40,9 +46,6 @@ def process(data: dict) -> None:
             if not updatable:
                 logger.warning("Non updatable server found.")
                 continue
-
-            arp_data = arp.get_arp_data()
-            arp_result = arp.process_arp_data(arp_data)
 
             mac = server_data["mac"]
             try:
