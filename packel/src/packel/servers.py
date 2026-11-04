@@ -1,9 +1,8 @@
 import getpass
 import logging
 import subprocess
-from typing import Any
-
 import tomllib
+from typing import Any
 
 from packel import arp, up
 
@@ -78,15 +77,25 @@ def validate_config(data: dict[str, Any]) -> None:
 
         for server_name, server_data in room_data["servers"].items():
             if not isinstance(server_data, dict):
-                raise ValueError(f"Server '{server_name}' in room '{room_name}' must be a dictionary")
+                raise ValueError(
+                    f"Server '{server_name}' in room '{room_name}' must be a dictionary"
+                )
             if "mac" not in server_data:
-                raise ValueError(f"Server '{server_name}' in room '{room_name}' missing required key: 'mac'")
+                raise ValueError(
+                    f"Server '{server_name}' in room '{room_name}' missing required key: 'mac'"
+                )
             if not isinstance(server_data["mac"], str):
-                raise ValueError(f"Server '{server_name}' in room '{room_name}' 'mac' must be a string")
+                raise ValueError(
+                    f"Server '{server_name}' in room '{room_name}' 'mac' must be a string"
+                )
             if "os" not in server_data:
-                raise ValueError(f"Server '{server_name}' in room '{room_name}' missing required key: 'os'")
+                raise ValueError(
+                    f"Server '{server_name}' in room '{room_name}' missing required key: 'os'"
+                )
             if not isinstance(server_data["os"], str):
-                raise ValueError(f"Server '{server_name}' in room '{room_name}' 'os' must be a string")
+                raise ValueError(
+                    f"Server '{server_name}' in room '{room_name}' 'os' must be a string"
+                )
 
 
 def init(filename: str) -> dict[str, Any]:

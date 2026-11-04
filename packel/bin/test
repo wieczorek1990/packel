@@ -1,6 +1,8 @@
-#!/usr/bin/env fish
+#!/bin/sh
 # Runs tests.
 
-source (dirname (status --current-filename))/common
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/common"
 
+cd "$SCRIPT_DIR/../.." || exit 1
 poetry run python -m unittest

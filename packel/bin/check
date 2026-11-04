@@ -1,0 +1,5 @@
+#!/bin/sh
+# Checks and fixes code.
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ruff check --fix --unsafe-fixes "$SCRIPT_DIR/../.."

@@ -2,7 +2,6 @@
 # Dumps the TOML servers file as JSON.
 import json
 import sys
-
 import tomllib
 
 if len(sys.argv) != 2:
@@ -12,7 +11,6 @@ if len(sys.argv) != 2:
 filepath = sys.argv[1]
 with open(filepath, "rb") as f:
     data = tomllib.load(f)
-    print(data)
 
 dump = json.dumps(data, indent=4, sort_keys=True, ensure_ascii=False)
 

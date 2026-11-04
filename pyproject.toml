@@ -16,5 +16,9 @@ dependencies = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[[tool.poetry.packages]]
+include = "packel"
+from = "packel/src"
+
 [tool.poetry.scripts]
 packel = "packel.cli:main"

@@ -1,14 +1,14 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 from packel.up import (
-    get_update_for_os,
-    Update,
     FedoraUpdate,
     MacOSUpdate,
     NotSupportedUpdate,
-    remote_sudo,
+    Update,
     get_connection,
+    get_update_for_os,
+    remote_sudo,
 )
 
 

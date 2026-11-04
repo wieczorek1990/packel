@@ -1,4 +1,5 @@
 #!/usr/bin/env fish
 # Installs dependencies.
 
+cd (dirname (status --current-filename))/../.. || exit 1
 poetry install

@@ -1,6 +1,6 @@
+import sys
 import unittest
 from unittest.mock import patch
-import sys
 
 from packel.cli import main
 

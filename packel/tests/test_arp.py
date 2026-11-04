@@ -1,7 +1,7 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
-from packel.arp import extract_ip_and_mac, process_arp_data, trim_ip, get_arp_data
+from packel.arp import extract_ip_and_mac, get_arp_data, process_arp_data, trim_ip
 
 SAMPLE_ONE = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]"""
 SAMPLE_FOUR = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]
@@ -100,4 +100,3 @@ class TestGetArpData(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

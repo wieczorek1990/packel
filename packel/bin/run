@@ -1,8 +1,9 @@
-#!/usr/bin/env fish
+#!/bin/sh
 # Runs code.
 # To be run from root directory.
 
-source (dirname (status --current-filename))/common
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/common"
 
-cd ./src/ || exit 1
-poetry run packel ../../servers.toml
+cd "$SCRIPT_DIR/../.." || exit 1
+poetry run packel ../servers.toml

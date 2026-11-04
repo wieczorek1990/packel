@@ -1,5 +1,6 @@
-import fabric
 import logging
+
+import fabric
 
 from packel import constants
 

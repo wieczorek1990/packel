@@ -1,7 +1,6 @@
-import unittest
-import tempfile
 import os
-from unittest.mock import patch, mock_open
+import tempfile
+import unittest
 
 from packel.servers import init, validate_config
 
@@ -149,9 +148,7 @@ class TestValidateConfig(unittest.TestCase):
             "rooms": {
                 "room1": {
                     "broadcast": "192.168.1.255",
-                    "servers": {
-                        "server1": {"os": "Fedora"}
-                    },
+                    "servers": {"server1": {"os": "Fedora"}},
                 }
             }
         }
@@ -165,9 +162,7 @@ class TestValidateConfig(unittest.TestCase):
             "rooms": {
                 "room1": {
                     "broadcast": "192.168.1.255",
-                    "servers": {
-                        "server1": {"mac": "aa:bb:cc:dd:ee:ff"}
-                    },
+                    "servers": {"server1": {"mac": "aa:bb:cc:dd:ee:ff"}},
                 }
             }
         }

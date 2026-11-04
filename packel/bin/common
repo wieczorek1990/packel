@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/bin/sh
 # Sets up.
 
-set -x PYTHONDONTWRITEBYTECODE 1
+export PYTHONDONTWRITEBYTECODE=1

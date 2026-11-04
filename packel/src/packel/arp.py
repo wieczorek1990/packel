@@ -12,7 +12,7 @@ def extract_ip_and_mac(line: str) -> tuple[str, str] | None:
 
     Returns None if the line doesn't match the expected format.
     """
-    match = re.search(r'\(([^)]+)\)\s+at\s+([0-9a-fA-F:]+)', line)
+    match = re.search(r"\(([^)]+)\)\s+at\s+([0-9a-fA-F:]+)", line)
     if match:
         return match.group(1), match.group(2)
     return None
