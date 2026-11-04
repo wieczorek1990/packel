@@ -1,7 +1,6 @@
 #!/usr/bin/env fish
 # Formats code.
 
-SCRIPT_DIR=(dirname (status --current-filename))
-isort $SCRIPT_DIR/../..
+set SCRIPT_DIR (dirname (status --current-filename))
 black $SCRIPT_DIR/../..
-ruff check $SCRIPT_DIR/../..
+ruff format $SCRIPT_DIR/../..
