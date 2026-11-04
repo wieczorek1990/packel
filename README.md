@@ -4,6 +4,12 @@ packel
 Generic packages updater for modern operating systems.
 Given a TOML config of servers grouped by rooms, `packel` resolves their IPs via ARP and SSHes in to run OS-specific update commands.
 
+## Simple validation
+
+```
+./bin/validate.py data/servers.toml | less -R
+```
+
 ## Installation
 
 Install the package in editable mode from the project root:
