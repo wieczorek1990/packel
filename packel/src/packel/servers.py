@@ -23,7 +23,7 @@ def process(data: dict) -> None:
             continue
 
         logger.info("Broadcasting: %s", broadcast)
-        subprocess.run(["ping", "-c", "1", broadcast], stdout=subprocess.DEVNULL)
+        subprocess.run(["ping", "-c", "1", broadcast], check=False, stdout=subprocess.DEVNULL)
 
         try:
             servers = workshop_data["servers"]
@@ -56,28 +56,28 @@ def validate_config(data: dict[str, Any]) -> None:
     """Validate the TOML config structure.
 
     Checks that required keys exist and have the correct types.
-    Raises ValueError with a descriptive message on invalid config.
+    Raises ValueError/TypeError with a descriptive message on invalid config.
     """
     if "rooms" not in data:
         raise ValueError("Config missing required key: 'rooms'")
     if not isinstance(data["rooms"], dict):
-        raise ValueError("'rooms' must be a dictionary")
+        raise TypeError("'rooms' must be a dictionary")
 
     for room_name, room_data in data["rooms"].items():
         if not isinstance(room_data, dict):
-            raise ValueError(f"Room '{room_name}' must be a dictionary")
+            raise TypeError(f"Room '{room_name}' must be a dictionary")
         if "broadcast" not in room_data:
             raise ValueError(f"Room '{room_name}' missing required key: 'broadcast'")
         if not isinstance(room_data["broadcast"], str):
-            raise ValueError(f"Room '{room_name}' 'broadcast' must be a string")
+            raise TypeError(f"Room '{room_name}' 'broadcast' must be a string")
         if "servers" not in room_data:
             raise ValueError(f"Room '{room_name}' missing required key: 'servers'")
         if not isinstance(room_data["servers"], dict):
-            raise ValueError(f"Room '{room_name}' 'servers' must be a dictionary")
+            raise TypeError(f"Room '{room_name}' 'servers' must be a dictionary")
 
         for server_name, server_data in room_data["servers"].items():
             if not isinstance(server_data, dict):
-                raise ValueError(
+                raise TypeError(
                     f"Server '{server_name}' in room '{room_name}' must be a dictionary"
                 )
             if "mac" not in server_data:
@@ -85,7 +85,7 @@ def validate_config(data: dict[str, Any]) -> None:
                     f"Server '{server_name}' in room '{room_name}' missing required key: 'mac'"
                 )
             if not isinstance(server_data["mac"], str):
-                raise ValueError(
+                raise TypeError(
                     f"Server '{server_name}' in room '{room_name}' 'mac' must be a string"
                 )
             if "os" not in server_data:
@@ -93,7 +93,7 @@ def validate_config(data: dict[str, Any]) -> None:
                     f"Server '{server_name}' in room '{room_name}' missing required key: 'os'"
                 )
             if not isinstance(server_data["os"], str):
-                raise ValueError(
+                raise TypeError(
                     f"Server '{server_name}' in room '{room_name}' 'os' must be a string"
                 )
 

@@ -1,6 +1,8 @@
 import logging
 
 import fabric
+import invoke.exceptions
+import paramiko.ssh_exception
 
 from packel import constants
 
@@ -22,7 +24,7 @@ def remote_sudo(host: str, password: str, command: str) -> fabric.Result | None:
     try:
         result = connection.sudo(command)
         return result
-    except Exception as e:
+    except (invoke.exceptions.AuthFailure, invoke.exceptions.UnexpectedExit, paramiko.ssh_exception.SSHException) as e:
         logger.error("Error connecting to %s: %s", host, e)
         return None
 

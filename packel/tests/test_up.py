@@ -81,9 +81,11 @@ class TestRemoteSudo(unittest.TestCase):
     @patch("packel.up.get_connection")
     def test_remote_sudo_handles_connection_error(self, mock_get_connection):
         """remote_sudo should return None on connection errors."""
+        import paramiko.ssh_exception
+
         mock_connection = MagicMock()
         mock_get_connection.return_value = mock_connection
-        mock_connection.sudo.side_effect = Exception("Connection refused")
+        mock_connection.sudo.side_effect = paramiko.ssh_exception.SSHException("Connection refused")
 
         result = remote_sudo("192.168.1.1", "password", "dnf upgrade")
 
