@@ -16,3 +16,6 @@ poetry.lock
 
 # UV
 uv.lock
+
+# Junie
+.junie/

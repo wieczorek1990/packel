@@ -19,9 +19,21 @@ class TestArp(unittest.TestCase):
         self.assertIsInstance(mac, str)
 
     def test_extract_ip_and_mac(self):
-        ip, mac = extract_ip_and_mac(SAMPLE_ONE)
+        result = extract_ip_and_mac(SAMPLE_ONE)
 
+        self.assertIsNotNone(result)
+        ip, mac = result
         self.assertIsARPLine(ip, mac)
+
+    def test_extract_ip_and_mac_malformed_line_returns_none(self):
+        """extract_ip_and_mac should return None for malformed lines."""
+        result = extract_ip_and_mac("this is not an ARP line")
+        self.assertIsNone(result)
+
+    def test_extract_ip_and_mac_empty_line_returns_none(self):
+        """extract_ip_and_mac should return None for empty lines."""
+        result = extract_ip_and_mac("")
+        self.assertIsNone(result)
 
     def test_process_arp_result(self):
         result = process_arp_data(SAMPLE_FOUR)
@@ -41,6 +53,22 @@ class TestArp(unittest.TestCase):
         self.assertIn("82:4:5f:a3:bd:64", result)
         self.assertEqual(result["82:4:5f:a3:bd:64"], "172.20.10.1")
 
+    def test_process_arp_result_skips_malformed_lines(self):
+        """process_arp_data should skip lines that don't match the ARP format."""
+        mixed = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]
+this is garbage
+? (172.20.10.10) at 5c:84:3c:51:25:84 on en1 ifscope [ethernet]"""
+        result = process_arp_data(mixed)
+
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result["82:4:5f:a3:bd:64"], "172.20.10.1")
+        self.assertEqual(result["5c:84:3c:51:25:84"], "172.20.10.10")
+
+    def test_process_arp_result_empty_input(self):
+        """process_arp_data should return an empty dict for empty input."""
+        result = process_arp_data("")
+        self.assertEqual(result, {})
+
 
 class TestTrimIp(unittest.TestCase):
     """Tests for the trim_ip() function."""
@@ -50,10 +78,10 @@ class TestTrimIp(unittest.TestCase):
         result = trim_ip("(172.20.10.1)")
         self.assertEqual(result, "172.20.10.1")
 
-    def test_trim_ip_removes_first_and_last_char(self):
-        """trim_ip should strip the first and last character of any string."""
-        result = trim_ip("[10.0.0.1]")
-        self.assertEqual(result, "10.0.0.1")
+    def test_trim_ip_no_change_without_parens(self):
+        """trim_ip should leave strings without parentheses unchanged."""
+        result = trim_ip("172.20.10.1")
+        self.assertEqual(result, "172.20.10.1")
 
 
 class TestGetArpData(unittest.TestCase):

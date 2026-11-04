@@ -1,6 +1,9 @@
+import logging
 import sys
 
 from packel.servers import init, process
+
+logger = logging.getLogger(__name__)
 
 
 def main() -> None:
@@ -8,10 +11,11 @@ def main() -> None:
         print("Usage:\tpackel data/servers.toml")
         sys.exit(1)
 
-    print("Starting reading requested...")
+    logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s")
+    logger.info("Starting reading requested...")
 
     filename = sys.argv[1]
     data = init(filename)
     process(data)
 
-    print("Done.")
+    logger.info("Done.")

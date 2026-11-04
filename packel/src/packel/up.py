@@ -1,6 +1,9 @@
 import fabric
+import logging
 
 from packel import constants
+
+logger = logging.getLogger(__name__)
 
 
 def get_connection(host: str, password: str) -> fabric.Connection:
@@ -19,7 +22,7 @@ def remote_sudo(host: str, password: str, command: str) -> fabric.Result | None:
         result = connection.sudo(command)
         return result
     except Exception as e:
-        print(f"Error connecting to {host}: {e}")
+        logger.error("Error connecting to %s: %s", host, e)
         return None
 
 
@@ -36,10 +39,10 @@ class Update:
         raise NotImplementedError
 
     def proceed(self) -> None:
-        print("Updating...")
+        logger.info("Updating...")
         self.core()
         self.needs_restarting()
-        print("Done updating.")
+        logger.info("Done updating.")
 
 
 class FedoraUpdate(Update):
@@ -78,7 +81,7 @@ class NotSupportedUpdate(Update):
         pass
 
     def proceed(self) -> None:
-        print(f"OS '{self.os}' is not supported — skipping.")
+        logger.warning("OS '%s' is not supported — skipping.", self.os)
 
 
 def get_update_for_os(

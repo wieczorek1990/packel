@@ -153,15 +153,15 @@ class TestMacOSUpdate(unittest.TestCase):
 class TestNotSupportedUpdate(unittest.TestCase):
     """Tests for the NotSupportedUpdate class."""
 
-    def test_not_supported_proceed_prints_warning(self):
-        """NotSupportedUpdate.proceed should print a skip message."""
+    @patch("packel.up.logger")
+    def test_not_supported_proceed_logs_warning(self, mock_logger):
+        """NotSupportedUpdate.proceed should log a skip warning."""
         update = NotSupportedUpdate("192.168.1.1", "secret", "Ubuntu")
 
-        with patch("packel.up.print") as mock_print:
-            update.proceed()
-            mock_print.assert_called_once_with(
-                "OS 'Ubuntu' is not supported — skipping."
-            )
+        update.proceed()
+        mock_logger.warning.assert_called_once_with(
+            "OS '%s' is not supported — skipping.", "Ubuntu"
+        )
 
     def test_not_supported_core_is_noop(self):
         """NotSupportedUpdate.core should do nothing."""
