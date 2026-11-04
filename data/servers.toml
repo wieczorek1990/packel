@@ -1,6 +1,9 @@
 [owner.lukaszwieczorek]
 name = "Łukasz Wieczorek"
 
+[owner.renatawieczorek]
+name = "Renata Wieczorek"
+
 [rooms.first]
 id = "I"
 name = "1-st room"
