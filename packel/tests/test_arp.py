@@ -66,7 +66,6 @@ class TestArp(unittest.TestCase):
         self.assertIn("82:04:5f:a3:bd:64", result)
         self.assertEqual(result["82:04:5f:a3:bd:64"], "172.20.10.1")
 
-
     def test_process_arp_result_skips_malformed_lines(self):
         """process_arp_data should skip lines that don't match the ARP format."""
         mixed = """? (172.20.10.1) at 82:4:5f:a3:bd:64 on en1 ifscope [ethernet]
@@ -154,7 +153,9 @@ class TestGetArpData(unittest.TestCase):
 
         result = get_arp_data()
 
-        mock_run.assert_called_once_with(["sudo", "arp", "-an"], capture_output=True, text=True, check=False)
+        mock_run.assert_called_once_with(
+            ["sudo", "arp", "-an"], capture_output=True, text=True, check=False
+        )
         self.assertEqual(result, ("? (192.168.1.1) at aa:bb:cc on en0", False))
 
     @patch("packel.arp.subprocess.run")
@@ -166,8 +167,12 @@ class TestGetArpData(unittest.TestCase):
 
         result = get_arp_data()
 
-        mock_run.assert_called_once_with(["sudo", "ip", "neigh", "show"], capture_output=True, text=True, check=False)
-        self.assertEqual(result, ("192.168.1.1 dev eth0 lladdr aa:bb:cc REACHABLE", True))
+        mock_run.assert_called_once_with(
+            ["sudo", "ip", "neigh", "show"], capture_output=True, text=True, check=False
+        )
+        self.assertEqual(
+            result, ("192.168.1.1 dev eth0 lladdr aa:bb:cc REACHABLE", True)
+        )
 
 
 class TestExtractIpAndMacLinux(unittest.TestCase):

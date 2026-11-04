@@ -10,7 +10,9 @@ from packel import constants
 logger = logging.getLogger(__name__)
 
 
-def get_connection(host: str, key_passphrase: str, sudo_password: str) -> fabric.Connection:
+def get_connection(
+    host: str, key_passphrase: str, sudo_password: str
+) -> fabric.Connection:
     """Create a Fabric Connection to the given host using SSH key authentication.
 
     Args:
@@ -31,7 +33,9 @@ def get_connection(host: str, key_passphrase: str, sudo_password: str) -> fabric
     return conn
 
 
-def remote_sudo(host: str, key_passphrase: str, sudo_password: str, command: str) -> fabric.Result | None:
+def remote_sudo(
+    host: str, key_passphrase: str, sudo_password: str, command: str
+) -> fabric.Result | None:
     """Run a command with sudo on a remote host, without exposing the password on the command line."""
     connection = get_connection(host, key_passphrase, sudo_password)
     try:
@@ -47,7 +51,9 @@ def remote_sudo(host: str, key_passphrase: str, sudo_password: str, command: str
 
 
 class Update:
-    def __init__(self, host: str, key_passphrase: str, sudo_password: str, os: str) -> None:
+    def __init__(
+        self, host: str, key_passphrase: str, sudo_password: str, os: str
+    ) -> None:
         self.host = host
         self.key_passphrase = key_passphrase
         self.sudo_password = sudo_password

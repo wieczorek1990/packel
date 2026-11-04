@@ -54,9 +54,9 @@ class TestGetConnection(unittest.TestCase):
         """get_connection should create a fabric Connection with SSH key auth and sudo password."""
         with patch("packel.up.Path.home") as mock_home:
             from pathlib import Path as RealPath
-            
+
             mock_home.return_value = RealPath("/home/user")
-            
+
             get_connection("192.168.1.1", "key_pass", "sudo_pass")
 
             mock_connection_class.assert_called_once_with(
@@ -82,7 +82,9 @@ class TestRemoteSudo(unittest.TestCase):
 
         result = remote_sudo("192.168.1.1", "key_pass", "sudo_pass", "dnf upgrade")
 
-        mock_get_connection.assert_called_once_with("192.168.1.1", "key_pass", "sudo_pass")
+        mock_get_connection.assert_called_once_with(
+            "192.168.1.1", "key_pass", "sudo_pass"
+        )
         mock_connection.sudo.assert_called_once_with("dnf upgrade")
         self.assertEqual(result, mock_result)
 
