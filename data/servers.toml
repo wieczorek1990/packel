@@ -116,7 +116,7 @@ broadcast = "192.168.8.255"
 [rooms.fourth.servers.macbookneo-0]
 id = "VI"
 os = "macOS"
-mac = ""
+mac = "5c:13:ac:1b:a0:c4"
 takeaway = false
 producer = "Apple"
 production_year = 2026
@@ -126,4 +126,4 @@ stable = true
 taken = true
 fire_possible = false
 owner = "Renata Wieczorek"
-updatable = false
+updatable = true
