@@ -1,4 +1,4 @@
-[rooms.owner.lukaszwieczorek]
+[owner.lukaszwieczorek]
 name = "Łukasz Wieczorek"
 
 [rooms.first]
@@ -6,30 +6,6 @@ id = "I"
 name = "1-st room"
 description = "The little room to north-west on the level 1."
 purpose = "Arts, Games, Management, Frontend"
-address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
-broadcast = "192.168.8.255"
-
-[rooms.second]
-id = "II"
-name = "2-nd room"
-description = "The large room in the south-west on the level 1."
-purpose = "Servers, Scripts, Backend"
-address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
-broadcast = "192.168.8.255"
-
-[rooms.third]
-id = "III"
-name = "3-rd room"
-description = "The carpet of the attic."
-purpose = "Anything"
-address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
-broadcast = "192.168.8.255"
-
-[rooms.fourth]
-id = "IV"
-name = "4-th room"
-description = "The salon on ground level."
-purpose = "Anything"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
@@ -89,6 +65,14 @@ taken = false
 fire_possible = true
 owner = "Łukasz Wieczorek"
 
+[rooms.second]
+id = "II"
+name = "2-nd room"
+description = "The large room in the south-west on the level 1."
+purpose = "Servers, Scripts, Backend"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
+broadcast = "192.168.8.255"
+
 [rooms.second.servers.imac-0]
 id = "I"
 os = "macOS"
@@ -102,6 +86,26 @@ stable = false
 taken = false
 fire_possible = false
 owner = "Łukasz Wieczorek"
+
+[rooms.third]
+id = "III"
+name = "3-rd room"
+description = "The carpet of the attic."
+purpose = "Anything"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
+broadcast = "192.168.8.255"
+
+[rooms.third.servers]
+
+[rooms.fourth]
+id = "IV"
+name = "4-th room"
+description = "The salon on ground level."
+purpose = "Anything"
+address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
+broadcast = "192.168.8.255"
+
+[rooms.fourth.servers]
 
 [rooms.fourth.servers.macbookneo-0]
 id = "VI"
