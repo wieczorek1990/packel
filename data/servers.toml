@@ -105,8 +105,6 @@ purpose = "Anything"
 address = "ul. Spichrzowa 7, 62-045 Pniewy, Wielkopolska, Poland"
 broadcast = "192.168.8.255"
 
-[rooms.fourth.servers]
-
 [rooms.fourth.servers.macbookneo-0]
 id = "VI"
 os = "macOS"
