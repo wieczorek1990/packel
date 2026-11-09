@@ -4,6 +4,15 @@ name = "Łukasz Wieczorek"
 [owner.renatawieczorek]
 name = "Renata Wieczorek"
 
+[owner.foo]
+name = "Foo"
+
+[owner.mija]
+name = "Mija"
+
+[owner.ju]
+name = "Ju"
+
 [rooms.first]
 id = "I"
 name = "1-st room"
