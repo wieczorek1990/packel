@@ -22,55 +22,11 @@ production_year = 2023
 model = "MacBook Pro"
 worth = 12000
 stable = false
-taken = false
+taken = true
+taken_by = "Łukasz Wieczorek"
 fire_possible = false
 owner = "Łukasz Wieczorek"
 updatable = true
-
-[rooms.first.servers.thinkpad-0]
-id = "III"
-os = "Fedora"
-mac = "b2:b4:cc:8a:fa:b7"
-takeaway = true
-producer = "Lenovo"
-production_year = 2010
-model = "ThinkPad T410"
-worth = 5000
-stable = false
-taken = false
-fire_possible = true
-owner = "Łukasz Wieczorek"
-updatable = false
-
-[rooms.first.servers.thinkpad-1]
-id = "V"
-os = "Fedora"
-mac = "f2:5f:f4:f5:1f:c3"
-takeaway = true
-producer = "Lenovo"
-production_year = 2011
-model = "ThinkPad E525"
-worth = 2500
-stable = false
-taken = false
-fire_possible = true
-owner = "Łukasz Wieczorek"
-updatable = false
-
-[rooms.first.servers.ideapad-0]
-id = "IV"
-os = "Fedora"
-mac = "f2:23:af:8d:15:d5"
-takeaway = true
-producer = "Lenovo"
-production_year = 2009
-model = "IdeaPad Y550"
-worth = 3500
-stable = false
-taken = false
-fire_possible = true
-owner = "Łukasz Wieczorek"
-updatable = false
 
 [rooms.second]
 id = "II"
@@ -90,10 +46,59 @@ production_year = 2019
 model = "iMac"
 worth = 8500
 stable = false
-taken = false
+taken = true
+taken_by = "Ju"
 fire_possible = false
 owner = "Łukasz Wieczorek"
 updatable = true
+
+[rooms.second.servers.thinkpad-0]
+id = "III"
+os = "Fedora"
+mac = "b2:b4:cc:8a:fa:b7"
+takeaway = true
+producer = "Lenovo"
+production_year = 2010
+model = "ThinkPad T410"
+worth = 5000
+stable = false
+taken = true
+taken_by = "Ju"
+fire_possible = true
+owner = "Łukasz Wieczorek"
+updatable = false
+
+[rooms.second.servers.thinkpad-1]
+id = "V"
+os = "Fedora"
+mac = "f2:5f:f4:f5:1f:c3"
+takeaway = true
+producer = "Lenovo"
+production_year = 2011
+model = "ThinkPad E525"
+worth = 2500
+stable = false
+taken = true
+taken_by = "Mija"
+fire_possible = true
+owner = "Łukasz Wieczorek"
+updatable = false
+
+[rooms.second.servers.ideapad-0]
+id = "IV"
+os = "Fedora"
+mac = "f2:23:af:8d:15:d5"
+takeaway = true
+producer = "Lenovo"
+production_year = 2009
+model = "IdeaPad Y550"
+worth = 3500
+stable = false
+taken = true
+taken_by = "Foo"
+fire_possible = true
+owner = "Łukasz Wieczorek"
+updatable = false
 
 [rooms.third]
 id = "III"
@@ -124,6 +129,7 @@ model = "MacBook Neo"
 worth = 4000
 stable = true
 taken = true
+taken_by = "Renata Wieczorek"
 fire_possible = false
 owner = "Renata Wieczorek"
 updatable = true
