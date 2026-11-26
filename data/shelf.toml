@@ -1,8 +1,0 @@
-[mobile]
-name = "Łukasz's shelf."
-[mobile.iphone-se-3rd-gen]
-id = "I"
-producer = "Apple"
-name = "iPhone SE 3rd generation"
-size = "64 GB"
-taken = true
